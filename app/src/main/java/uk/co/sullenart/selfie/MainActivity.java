@@ -1,11 +1,5 @@
 package uk.co.sullenart.selfie;
 
-/*
-TODO
-Accept/reject picture by subsequent clicking.
-Auto launch/quit app.
- */
-
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,6 +19,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.media.MediaActionSound;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
@@ -281,6 +276,10 @@ public class MainActivity extends AppCompatActivity {
                 channel.write(image.getPlanes()[0].getBuffer());
                 MediaScannerConnection.scanFile(MainActivity.this, new String[]{file.getAbsolutePath()}, null, null);
                 Toast.makeText(MainActivity.this, "Photo captured", Toast.LENGTH_SHORT).show();
+
+                // TODO Route the audio to the speakers so you can hear it with the "headphones" plugged in
+                new MediaActionSound().play(MediaActionSound.SHUTTER_CLICK);
+
                 Log.d(TAG, String.format("Image captured %d x %d to %s", image.getWidth(), image.getHeight(), file.toString()));
             } catch (IOException e) {
                 showError(e);
