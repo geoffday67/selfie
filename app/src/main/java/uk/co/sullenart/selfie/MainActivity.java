@@ -4,7 +4,6 @@ package uk.co.sullenart.selfie;
 TODO
 Accept/reject picture by subsequent clicking.
 Auto launch/quit app.
-Enable face detection and other camera parameters.
 Icon.
  */
 
@@ -244,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
 
                 CaptureRequest.Builder builder = cameraCaptureSession.getDevice().createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
                 builder.addTarget(previewSurface);
+                builder.set(CaptureRequest.CONTROL_SCENE_MODE, CaptureRequest.CONTROL_SCENE_MODE_FACE_PRIORITY);
+                builder.set(CaptureRequest.STATISTICS_FACE_DETECT_MODE, CaptureRequest.STATISTICS_FACE_DETECT_MODE_SIMPLE);
                 cameraCaptureSession.setRepeatingRequest(builder.build(), null, null);
             } catch (CameraAccessException e) {
                 showError(e);
