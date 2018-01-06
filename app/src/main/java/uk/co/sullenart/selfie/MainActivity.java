@@ -4,7 +4,6 @@ package uk.co.sullenart.selfie;
 TODO
 Accept/reject picture by subsequent clicking.
 Auto launch/quit app.
-Icon.
  */
 
 import android.Manifest;
